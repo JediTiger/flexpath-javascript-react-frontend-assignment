@@ -12,8 +12,24 @@ export default function Search() {
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
    function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "model") {
-      const passedFilter = chosenFilter.trim().toLowerCase();
+      let passedFilter;
       const passedKeyword = enteredKeyword.trim().toLowerCase();   
+      switch (chosenFilter.trim().toLowerCase()) {
+         case "model":
+            passedFilter = "Model";
+            break;
+         case "gender":
+            passedFilter = "Gender";
+            break;
+         case "operatingSystem":
+            passedFilter = "Operating System";
+            break;
+         case "behaviorClass":
+            passedFilter = "";
+            break;
+      }
+      let results = searchObject.filter(item => String(item[passedFilter]).toLowerCase());
+      console.log(results);
       return results;
    }   
 
@@ -24,7 +40,7 @@ export default function Search() {
          .then((data) => {
    // Search data successfully stored in an accessible var
             setSearchObject(data);
-            console.log(JSON.stringify(searchObject));
+            console.log(searchObject);
             setDerivedResults(searchDataset(searchObject, "IPHONE", "MoDeL"));
         })
       .catch((error) => {
@@ -82,7 +98,7 @@ export default function Search() {
                {/* Something will go here to show the search results in the table correctly */}
                </tbody>
             </table>
-            {results}
+            {derivedResults}
             <hr />
          </div>
       </div>
