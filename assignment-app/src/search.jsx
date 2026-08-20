@@ -3,6 +3,20 @@ import { React, useState, useEffect } from "react";
 export default function Search() {
 
    const [searchObject, setSearchObject] = useState([]);
+   const [keyword, setKeyword] = useState("");
+   const [searchFilter, setSearchFilter] = useState('');
+   const [derivedResults, setDerivedResults] = useState([]);
+
+   // searchObject is the whole dataset
+   // enteredKeyword is the value of the key set pair
+   // chosenFilter is the key of the pair
+   // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
+   function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "model") {
+      const passedFilter = chosenFilter.trim().toLowerCase();
+      const passedKeyword = enteredKeyword.trim().toLowerCase();   
+      return results;
+   }   
+
    useEffect(() => {
    // Successfully calls the api to fetch the search object
       fetch('/api/data/search')
@@ -10,6 +24,8 @@ export default function Search() {
          .then((data) => {
    // Search data successfully stored in an accessible var
             setSearchObject(data);
+            console.log(JSON.stringify(searchObject));
+            setDerivedResults(searchDataset(searchObject, "IPHONE", "MoDeL"));
         })
       .catch((error) => {
         console.error('Error reading the data file:', error);
@@ -18,7 +34,7 @@ export default function Search() {
   // For now, successfully returns the default search page. Will move elements to their own functions once completely operational
    return (
       // A containing div so it's a single object return
-      <div>
+      <div id="searchContainer">
          <hr />
          <p>
             {/* drop down menu for filyer type */}
@@ -37,32 +53,36 @@ export default function Search() {
          </p>
          {/* The search status gets its own div so its value can change as the app runs */}
          <div id="searchStatus"><p>No Records to display</p></div>
-         {/* card placeholders for the various metric calculations required */}
+         {/* card placeholders for the various metric calculations required. Will do later */}
          <div id="metricCards">
             <div id="usageTime">App Usage Time (min/day)</div>
             <div id="screenTime">Screen On Time (hours/day)</div>
             <div id="numberApps">Number of Apps Installed</div>
             <div id="age">Age</div>
          </div>
-         {/* The actual table for the search results. Default is just the drop down menu for filyer type */}
+         {/* The actual table for the search results */}
          <div id="searchResultsTable">
             <table>
-               <tr>
-                  <th>User ID</th>
-                  <th>Device Model</th>
-                  <th>Operating System</th>
-                  <th>App Usage Time (min/day)</th>
-                  <th>Screen On Time (hours/day)</th>
-                  <th>Battery Drain (mAh/day)</th>
-                  <th>Number of Apps Installed</th>
-                  <th>Data Usage (MB/day)</th>
-                  <th>Age</th>
-                  <th>Gender</th>
-                  <th>User Behavior Class</th>
-               </tr>
-               {/* Logic for searching will go here so it displays in the table correctly */}
-
+               <thead>
+                  <tr>
+                     <th>User ID</th>
+                     <th>Device Model</th>
+                     <th>Operating System</th>
+                     <th>App Usage Time (min/day)</th>
+                     <th>Screen On Time (hours/day)</th>
+                     <th>Battery Drain (mAh/day)</th>
+                     <th>Number of Apps Installed</th>
+                     <th>Data Usage (MB/day)</th>
+                     <th>Age</th>
+                     <th>Gender</th>
+                     <th>User Behavior Class</th>
+                  </tr>
+               </thead>
+               <tbody>
+               {/* Something will go here to show the search results in the table correctly */}
+               </tbody>
             </table>
+            {results}
             <hr />
          </div>
       </div>
