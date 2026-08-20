@@ -1,7 +1,7 @@
 export function ltc(prefix, results) {
    if (!results) {
-   console.log(`{prefix}`);
+   console.log(`${prefix}`);
    } else {
-   console.log(`{prefix}: {results}`);
+   console.log(`${prefix}: ${results}`);
    }
 }
