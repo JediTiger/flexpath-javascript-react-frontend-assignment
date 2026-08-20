@@ -43,9 +43,9 @@ export default function Search() {
          .then((data) => {
    // Search data successfully stored in an accessible var
             setSearchObject(data);
-            console.log(searchObject);
+//            ltc("Original dataset", searchObject);
             setDerivedResults(searchDataset(searchObject, "IPHONE", "MoDeL"));
-            console.log(derivedResults);
+            ltc("Results of search", derivedResults);
         })
       .catch((error) => {
         console.error('Error reading the data file:', error);
