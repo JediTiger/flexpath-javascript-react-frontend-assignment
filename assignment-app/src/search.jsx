@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { ltc } from "./logToConsole.js";
 
 export default function Search() {
 
@@ -13,7 +14,8 @@ export default function Search() {
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
    function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "model") {
       let passedFilter;
-      const passedKeyword = enteredKeyword.trim().toLowerCase();   
+      const passedKeyword = enteredKeyword.trim().toLowerCase();
+      ltc("User entered filter", chosenFilter);
       switch (chosenFilter.trim().toLowerCase()) {
          case "model":
             passedFilter = "Model";
@@ -22,14 +24,15 @@ export default function Search() {
             passedFilter = "Gender";
             break;
          case "operatingSystem":
-            passedFilter = "Operating System";
+            passedFilter = "Operating";
             break;
          case "behaviorClass":
-            passedFilter = "";
+            passedFilter = "Behavior";
             break;
       }
+
       let results = searchObject.filter(item => String(item[passedFilter]).toLowerCase());
-      console.log(results);
+      ltc("Results of searchObject search", results);
       return results;
    }   
 
@@ -42,6 +45,7 @@ export default function Search() {
             setSearchObject(data);
             console.log(searchObject);
             setDerivedResults(searchDataset(searchObject, "IPHONE", "MoDeL"));
+            console.log(derivedResults);
         })
       .catch((error) => {
         console.error('Error reading the data file:', error);
