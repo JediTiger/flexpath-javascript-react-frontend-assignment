@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { makeHomePageElements, navigationBar } from "./assets/homePageFragments.jsx";
-import Home from "./App";
 import Search from "./Search";
 
 export default function App() {
@@ -20,16 +19,14 @@ export default function App() {
       });
   }, []);
   return (
-   <>
-      {navigationBar()}
       <Router>
+      {navigationBar()}
          <Routes>
             <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
             <Route path="/search" element={<Search />} />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
       </Router>    
-   </>
   )
 }
 
@@ -37,8 +34,8 @@ export default function App() {
 export function NotFound() {
   return (
     <div>
-      <h2>404 - Page Not Found</h2>
-      <p>We are terribly sorry but the pageou are looking for does not exist.</p>
+      <h3>On no! That page is missing!</h3>
+      <p>We are terribly sorry but the page you are looking for was not found.</p>
     </div>
   );
 }
