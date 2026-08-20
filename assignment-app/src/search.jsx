@@ -18,7 +18,13 @@ export default function Search() {
    return (
       <>
          <p>This is the search page</p>
-         <p>{searchObject}</p>
+         <label for="filters">Select data point to filter search by:</label>
+            <select name="cars" id="filters">
+               <option value="volvo">model</option>
+               <option value="saab">gender</option>
+               <option value="mercedes">operatingSystem</option>
+               <option value="audi">behaviorClass</option>
+            </select>
       </>
    );
 }
