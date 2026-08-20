@@ -1,27 +1,23 @@
 import React from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import { useEffect } from "react";
-function App() {
+export default App;
 
-// Starting with can i get it to import the data from the text file for the 'Home' page
-
-  function TextDisplayForHomePage() {
-  const [text, setText] = useState('');
-
-  useEffect(() => {
-    // Attempt to fetch the file from the public folder of this project
-    fetch('../public/dataset-information.txt')
-      .then((response) => response.text())
-      .then((data) => {
-        setText(data);
-        console.log(data);
-      })
+  function App() {
+    const [text, setText] = useState('');
+    console.log(text);
+    useEffect(() => {
+      // Attempt to fetch the file from the public folder of this project
+      fetch('/dataset-information.txt')
+        .then((response) => response.text())
+        .then((data) => {
+          setText(data);
+          console.log(data);
+        })
       .catch((error) => {
         console.error('Error reading the text file:', error);
       });
   }, []);
-
-}
 
   return (
     <div>
@@ -32,10 +28,7 @@ function App() {
       </nav>
       <p>Some text</p>
       <hr />
-      <p>Some more text</p>
+      <p>{text}</p>
     </div>
   );
 }
-
-export default App;
-
