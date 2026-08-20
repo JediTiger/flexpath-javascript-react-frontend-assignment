@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import { makeHomePageElements } from "./assets/homePageFragments";
+import { makeHomePageElements, navigationBar } from "./assets/homePageFragments";
 import Home from "./App";
 import Search from "./Search";
 
@@ -21,14 +21,15 @@ export default function App() {
   }, []);
   return (
    <>
+      {navigationBar()}
       <Router>
          <Routes>
             <Route path="/" element={<Home />} />
+               {makeHomePageElements(textFileAsLines)}
             <Route path="/search" element={<Search />} />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
       </Router>    
-      {makeHomePageElements(textFileAsLines)}
    </>
   )
 }

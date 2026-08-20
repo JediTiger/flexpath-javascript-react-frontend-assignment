@@ -16,16 +16,23 @@ export function makeList(itemArray) {
    );
 }
 
+export function navigationBar() {
+   return (
+      <>
+         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <p className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
+            <p className="navbar-brand ms-4 nav-link" id="search">Search Through Dataset</p>
+         </nav>
+      </>
+   )
+}
+
 export function makeHomePageElements(textFileAsLines) {
    const siteDescript = textFileAsLines[5];
    const listTitle = textFileAsLines[7];
    const listItemsOnly = textFileAsLines.slice(9);
    return (
       <div>
-         <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-         <p className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
-         <p className="navbar-brand ms-4 nav-link" id="search">Search Through Dataset</p>
-         </nav>
          <hr />
          {/* Page title */}
          <h1>User Behavior Data</h1>
