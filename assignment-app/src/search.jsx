@@ -16,15 +16,21 @@ export default function Search() {
       });
   }, []);
    return (
-      <>
+      <div>
          <p>This is the search page</p>
-         <label for="filters">Select data point to filter search by:</label>
+         <p>
+            <label htmlFor="filters">Select data point to filter search by:</label>
             <select name="cars" id="filters">
                <option value="volvo">model</option>
                <option value="saab">gender</option>
                <option value="mercedes">operatingSystem</option>
                <option value="audi">behaviorClass</option>
             </select>
-      </>
+         </p>
+         <p>
+            <label htmlFor="keyword">Keyword:</label>
+            <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
+         </p>
+      </div>
    );
 }
