@@ -21,12 +21,6 @@ function App() {
       });
   }, []);
 
-  return (
-    <div>
-      <h2>Document Content</h2>
-      <pre>{text}</pre>
-    </div>
-  );
 }
 
   return (
@@ -36,7 +30,9 @@ function App() {
         <p className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
         <p className="navbar-brand ms-4 nav-link" id="search">Search Behavior Data</p>
       </nav>
+      <p>Some text</p>
       <hr />
+      <p>Some more text</p>
     </div>
   );
 }
