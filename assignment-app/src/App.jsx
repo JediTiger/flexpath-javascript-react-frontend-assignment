@@ -1,4 +1,5 @@
-import { /* React, */ useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { sourceLink, makeList } from "./assets/homePageFragments.jsx";
 export default App;
 
@@ -24,8 +25,7 @@ export default App;
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        {/* <p> tag is a placeholder, You'll need to change the tag/component type later*/}
-        <p className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
+        <p to="/home" className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
         <p className="navbar-brand ms-4 nav-link" id="search">Search Through Dataset</p>
       </nav>
       <hr />
