@@ -1,11 +1,17 @@
 export function sourceLink(linkText,linkUrl) {
-    return (
-        <a href={linkUrl} target="_blank">{linkText}</a>
-    );
+   return (
+      <a href={linkUrl} target="_blank">{linkText}</a>
+   );
 }
 
-export function makeList(x) {
-    return (
-        <p>{x}</p>
-    );
+export function makeList(itemArray) {
+   return (
+      <ul>
+      {itemArray.map((item, i) => (
+         <li key={i}>
+            {item.replace(/^-\s*/, '')}
+         </li>
+      ))}
+      </ul>
+   );
 }

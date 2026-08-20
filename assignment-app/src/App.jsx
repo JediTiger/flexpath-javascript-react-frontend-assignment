@@ -5,7 +5,6 @@ export default App;
   function App() {
     
     // Will read in the text file
-    const [sourceTextAndUrl, setSourceAndUrl] = useState([]);
     const [textFileAsLines, setTextFileAsLines] = useState([]);
     useEffect(() => {
       // Attempt to fetch the file from the public folder of this project
@@ -13,7 +12,6 @@ export default App;
         .then((response) => response.text())
         .then((data) => {
           const lines = data.split('\n').map(line => line.trim());
-          setSourceAndUrl([textFileAsLines[0], textFileAsLines[2]])
           setTextFileAsLines(lines);
         })
       .catch((error) => {
@@ -31,7 +29,8 @@ export default App;
       <p>Some text</p>
       <hr />
       <p>{textFileAsLines}</p>
-      <p>{textFileAsLines[7]}</p>
+      <h4>{textFileAsLines[7]}</h4>
+      <p>{makeList(textFileAsLines)}</p>
       <p>{sourceLink(textFileAsLines[0], textFileAsLines[2])}</p>
     </div>
   );
