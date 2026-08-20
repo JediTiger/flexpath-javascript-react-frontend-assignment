@@ -4,11 +4,16 @@ import { useEffect } from "react";
 export default App;
 
   function App() {
+    
+    // Will read in the text file
     const [text, setText] = useState('');
+    const [sourceLink, setSourceLink] = useState('');
+    const [bodyText, setBodyText] = useState('');
+    const [listItems, setListItems] = useState([]);
     console.log(text);
     useEffect(() => {
       // Attempt to fetch the file from the public folder of this project
-      fetch('/dataset-information.txt')
+      fetch('../dataset-information.txt')
         .then((response) => response.text())
         .then((data) => {
           setText(data);
