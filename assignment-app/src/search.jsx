@@ -17,20 +17,45 @@ export default function Search() {
   }, []);
    return (
       <div>
-         <p>This is the search page</p>
+         <hr />
          <p>
             <label htmlFor="filters">Select data point to filter search by:</label>
             <select name="cars" id="filters">
-               <option value="volvo">model</option>
-               <option value="saab">gender</option>
-               <option value="mercedes">operatingSystem</option>
-               <option value="audi">behaviorClass</option>
+               <option value="model">model</option>
+               <option value="gender">gender</option>
+               <option value="operatingSystem">operatingSystem</option>
+               <option value="behaviorClass">behaviorClass</option>
             </select>
          </p>
          <p>
             <label htmlFor="keyword">Keyword:</label>
             <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
          </p>
+         <div id="searchStatus">No records to display</div>
+         <div id="metricCards">
+            <div id="usageTime"></div>
+            <div id="screenTime"></div>
+            <div id="numberApps"></div>
+            <div id="age"></div>
+         </div>
+         <div id="searchResultsTable">
+            <table>
+               <tr>
+                  <th>User ID</th>
+                  <th>Device Model</th>
+                  <th>Operating System</th>
+                  <th>App Usage Time (min/day)</th>
+                  <th>Screen On Time (hours/day)</th>
+                  <th>Battery Drain (mAh/day)</th>
+                  <th>Number of Apps Installed</th>
+                  <th>Data Usage (MB/day)</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>User Behavior Class</th>
+               </tr>
+            </table>
+            <hr />
+         </div>
       </div>
    );
 }
