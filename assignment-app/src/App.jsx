@@ -18,19 +18,26 @@ export default App;
         console.error('Error reading the text file:', error);
       });
   }, []);
-
+  const siteDescript = textFileAsLines[5];
+  const listTitle = textFileAsLines[7];
+  const listItemsOnly = textFileAsLines.slice(9);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         {/* <p> tag is a placeholder, You'll need to change the tag/component type later*/}
         <p className="navbar-brand ms-4 nav-link" id="home">User Behavior Data</p>
-        <p className="navbar-brand ms-4 nav-link" id="search">Search Behavior Data</p>
+        <p className="navbar-brand ms-4 nav-link" id="search">Search Through Dataset</p>
       </nav>
-      <p>Some text</p>
       <hr />
-      <p>{textFileAsLines}</p>
-      <h4>{textFileAsLines[7]}</h4>
-      <p>{makeList(textFileAsLines)}</p>
+      {/* Page title */}
+      <h1>User Behavior Data</h1>
+      {/* Site description */}
+      <p>{siteDescript}</p>
+      {/* Unordered list title */}
+      <h4>{listTitle}</h4>
+      {/* Unordered list */}
+      <div>{makeList(listItemsOnly)}</div>
+      {/* Source text and link */}
       <p>{sourceLink(textFileAsLines[0], textFileAsLines[2])}</p>
     </div>
   );
