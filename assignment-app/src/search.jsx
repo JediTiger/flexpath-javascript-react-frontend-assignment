@@ -15,7 +15,7 @@ export default function Search() {
         console.error('Error reading the data file:', error);
       });
   }, []);
-  // For now, successfully returns the default search page. Will move elements to their own functions once operational
+  // For now, successfully returns the default search page. Will move elements to their own functions once completely operational
    return (
       // A containing div so it's a single object return
       <div>
