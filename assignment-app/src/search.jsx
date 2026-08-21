@@ -1,12 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
 
-export default function Search() {
-
-   const [searchObject, setSearchObject] = useState([]);
-   const [keyword, setKeyword] = useState("");
-   const [searchFilter, setSearchFilter] = useState('');
-   const [derivedResults, setDerivedResults] = useState([]);
+export default function Search({searchObject, setSearchObject, derivedResults, setDerivedResults}) {
 
    // searchObject is the whole dataset
    // enteredKeyword is the value of the key set pair
@@ -43,18 +38,18 @@ export default function Search() {
 
    useEffect(() => {
    // Successfully calls the api to fetch the search object
-      fetch('/api/data/search')
-         .then((response) => response.json())
-         .then((data) => {
-   // Search data successfully stored in an accessible var
-            setSearchObject(data);
-            setDerivedResults(searchDataset(searchObject, "ANDroid", "operatingsystem"));
-            ltc("Results of search", derivedResults);
-        })
+      if (searchObject.length === 0) {
+         fetch('/api/data/search').then((response) => response.json()).then((data) => {
+               setSearchObject(data);
+               setDerivedResults(searchDataset(data, "google pixel 5", "model"));
+               ltc("Results of search", derivedResults);
+            })
+         
       .catch((error) => {
         console.error('Error reading the data file:', error);
       });
-  }, []);
+   }
+  }, [searchObject, derivedResults, setDerivedResults, setSearchObject]);
   // For now, successfully returns the default search page. Will move elements to their own functions once completely operational
    return (
       // A containing div so it's a single object return

@@ -6,6 +6,9 @@ import Search from "./Search";
 export default function App() {
     
    const [textFileAsLines, setTextFileAsLines] = useState([]);
+   const [searchObject, setSearchObject] = useState([]);
+   const [derivedResults, setDerivedResults] = useState([]);
+   
    useEffect(() => {
    // Attempt to fetch the file from the public folder of this project
       fetch('../dataset-information.txt')
@@ -23,7 +26,12 @@ export default function App() {
       {navigationBar()}
          <Routes>
             <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/search" element={<Search 
+               searchObject={searchObject} 
+               setSearchObject={setSearchObject}
+               derivedResults={derivedResults} 
+               setDerivedResults={setDerivedResults}
+               />} />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
       </Router>    
