@@ -12,26 +12,31 @@ export default function Search() {
    // enteredKeyword is the value of the key set pair
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
-   function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "model") {
+   function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "") {
+      if (!Array.isArray(searchObject)) return [];
       let passedFilter;
-      const passedKeyword = enteredKeyword.trim().toLowerCase();
+      const passedKeyword = String(enteredKeyword).trim().toLowerCase();
       ltc("User entered filter", chosenFilter);
       switch (chosenFilter.trim().toLowerCase()) {
          case "model":
-            passedFilter = "Model";
+            passedFilter = "Device Model";
             break;
          case "gender":
             passedFilter = "Gender";
             break;
-         case "operatingSystem":
-            passedFilter = "Operating";
+         case "operatingsystem":
+            passedFilter = "Operating System";
             break;
-         case "behaviorClass":
-            passedFilter = "Behavior";
+         case "behaviorclass":
+            passedFilter = "User Behavior Class";
             break;
+         default:
+            passedFilter = "Model";
       }
-
-      let results = searchObject.filter(item => String(item[passedFilter]).toLowerCase());
+      ltc("passedFilter is", passedFilter);
+      ltc("User entered keyword is", enteredKeyword);
+      ltc("passedKeyword is", passedKeyword);
+      let results = searchObject.filter(item => item[passedFilter].toLowerCase().includes(passedKeyword.toLowerCase()));
       ltc("Results of searchObject search", results);
       return results;
    }   
@@ -39,12 +44,11 @@ export default function Search() {
    useEffect(() => {
    // Successfully calls the api to fetch the search object
       fetch('/api/data/search')
-         .then((response) => response.text())
+         .then((response) => response.json())
          .then((data) => {
    // Search data successfully stored in an accessible var
             setSearchObject(data);
-//            ltc("Original dataset", searchObject);
-            setDerivedResults(searchDataset(searchObject, "IPHONE", "MoDeL"));
+            setDerivedResults(searchDataset(searchObject, "ANDroid", "operatingsystem"));
             ltc("Results of search", derivedResults);
         })
       .catch((error) => {
@@ -70,6 +74,7 @@ export default function Search() {
             {/* text box for user entered keyword */}
             <label htmlFor="keyword">Keyword:</label>
             <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
+            <button type="submit">Search</button>
          </p>
          {/* The search status gets its own div so its value can change as the app runs */}
          <div id="searchStatus"><p>No Records to display</p></div>
@@ -102,7 +107,7 @@ export default function Search() {
                {/* Something will go here to show the search results in the table correctly */}
                </tbody>
             </table>
-            {derivedResults}
+            {JSON.stringify(derivedResults)}
             <hr />
          </div>
       </div>
