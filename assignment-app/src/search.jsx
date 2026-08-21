@@ -7,31 +7,13 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
    // enteredKeyword is the value of the key set pair
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
-   function searchDataset(searchObject, enteredKeyword = "", chosenFilter = "") {
+   function searchDataset(searchObject = [], enteredKeyword = "", chosenFilter = "Model") {
       if (!Array.isArray(searchObject)) return [];
-      let passedFilter;
       const passedKeyword = String(enteredKeyword).trim().toLowerCase();
       ltc("User entered filter", chosenFilter);
-      switch (chosenFilter.trim().toLowerCase()) {
-         case "model":
-            passedFilter = "Device Model";
-            break;
-         case "gender":
-            passedFilter = "Gender";
-            break;
-         case "operatingsystem":
-            passedFilter = "Operating System";
-            break;
-         case "behaviorclass":
-            passedFilter = "User Behavior Class";
-            break;
-         default:
-            passedFilter = "Model";
-      }
-      ltc("passedFilter is", passedFilter);
       ltc("User entered keyword is", enteredKeyword);
       ltc("passedKeyword is", passedKeyword);
-      let results = searchObject.filter(item => item[passedFilter].toLowerCase().includes(passedKeyword.toLowerCase()));
+      let results = searchObject.filter(item => item[chosenFilter].toLowerCase().includes(passedKeyword.toLowerCase()));
       ltc("Results of searchObject search", results);
       return results;
    }   
@@ -39,12 +21,15 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
    useEffect(() => {
    // Successfully calls the api to fetch the search object
       if (searchObject.length === 0) {
-         fetch('/api/data/search').then((response) => response.json()).then((data) => {
-               setSearchObject(data);
-               setDerivedResults(searchDataset(data, "google pixel 5", "model"));
-               ltc("Results of search", derivedResults);
-            })
-         
+         fetch('/api/data/search')
+         .then((response) => response.json())
+         .then((data) => {
+            setSearchObject(data);
+            setDerivedResults(searchDataset(data, "OnePlus 9", "model"));
+            ltc("CONTENTS or derivedResults var", derivedResults);
+            ltc("Size of results", derivedResults.length)
+            ltc("Results of search", derivedResults);
+         })
       .catch((error) => {
         console.error('Error reading the data file:', error);
       });
@@ -59,10 +44,10 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
             {/* drop down menu for filyer type */}
             <label htmlFor="filters">Select data point to filter search by:</label>
             <select name="cars" id="filters">
-               <option value="model">model</option>
-               <option value="gender">gender</option>
-               <option value="operatingSystem">operatingSystem</option>
-               <option value="behaviorClass">behaviorClass</option>
+               <option value="Model">model</option>
+               <option value="Gender">gender</option>
+               <option value="Operating System">operatingSystem</option>
+               <option value="User Behavior Class">behaviorClass</option>
             </select>
          </p>
          <p>
@@ -102,7 +87,7 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
                {/* Something will go here to show the search results in the table correctly */}
                </tbody>
             </table>
-            {JSON.stringify(derivedResults)}
+            Contents of derivedResults array: {JSON.stringify(derivedResults)}
             <hr />
          </div>
       </div>
