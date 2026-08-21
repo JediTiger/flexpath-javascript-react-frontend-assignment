@@ -27,10 +27,6 @@ export default function App() {
          <Routes>
             <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
             <Route path="/search" element={<Search 
-               searchObject={searchObject} 
-               setSearchObject={setSearchObject}
-               derivedResults={derivedResults} 
-               setDerivedResults={setDerivedResults}
                />} />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>

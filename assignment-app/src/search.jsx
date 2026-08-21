@@ -7,35 +7,20 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
    // enteredKeyword is the value of the key set pair
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
-   function searchDataset(searchObject = [], enteredKeyword = "", chosenFilter = "Model") {
-      if (!Array.isArray(searchObject)) return [];
-      const passedKeyword = String(enteredKeyword).trim().toLowerCase();
-      ltc("User entered filter", chosenFilter);
-      ltc("User entered keyword is", enteredKeyword);
-      ltc("passedKeyword is", passedKeyword);
-      let results = searchObject.filter(item => item[chosenFilter].toLowerCase().includes(passedKeyword.toLowerCase()));
-      ltc("Results of searchObject search", results);
-      return results;
-   }   
-
+   
    useEffect(() => {
    // Successfully calls the api to fetch the search object
-      if (searchObject.length === 0) {
-         fetch('/api/data/search')
+         fetch('/api/data/search?filterType=gender&keyword=female')
          .then((response) => response.json())
          .then((data) => {
+            ltc("Data is", data);
             setSearchObject(data);
-            setDerivedResults(searchDataset(data, "OnePlus 9", "model"));
-            ltc("CONTENTS or derivedResults var", derivedResults);
-            ltc("Size of results", derivedResults.length)
-            ltc("Results of search", derivedResults);
          })
       .catch((error) => {
         console.error('Error reading the data file:', error);
       });
-   }
+   
   }, [searchObject, derivedResults, setDerivedResults, setSearchObject]);
-  // For now, successfully returns the default search page. Will move elements to their own functions once completely operational
    return (
       // A containing div so it's a single object return
       <div id="searchContainer">
