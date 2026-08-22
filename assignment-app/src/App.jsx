@@ -33,7 +33,8 @@ export default function App() {
                enteredKeyword={enteredKeyword}
                setEnteredKeyword={setEnteredKeyword}
                searchResults={searchResults}
-               setSearchResults={setSearchResults}               />} />
+               setSearchResults={setSearchResults}               />}
+            />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
       </Router>    
