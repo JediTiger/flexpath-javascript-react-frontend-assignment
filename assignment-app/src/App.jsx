@@ -6,9 +6,10 @@ import Search from "./Search.jsx";
 export default function App() {
     
    const [textFileAsLines, setTextFileAsLines] = useState([]);
-   const [searchObject, setSearchObject] = useState([]);
-   const [derivedResults, setDerivedResults] = useState([]);
-   
+   const [chosenFilter, setChosenFilter] = useState("");
+   const [enteredKeyword, setEnteredKeyword] = useState("");
+   const [searchResults, setSearchResults] = useState([]);
+
    useEffect(() => {
    // Attempt to fetch the file from the public folder of this project
       fetch('../dataset-information.txt')
@@ -27,7 +28,12 @@ export default function App() {
          <Routes>
             <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
             <Route path="/search" element={<Search 
-               />} />
+               chosenFilter={chosenFilter}
+               setChosenFilter={setChosenFilter}
+               enteredKeyword={enteredKeyword}
+               setEnteredKeyword={setEnteredKeyword}
+               searchResults={searchResults}
+               setSearchResults={setSearchResults}               />} />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
       </Router>    

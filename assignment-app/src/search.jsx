@@ -1,23 +1,19 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
 
-export default function Search() {
+export default function Search({chosenFilter, setChosenFilter, enteredKeyword, setEnteredKeyword, searchResults, setSearchResults}) {
 
    // searchObject is the whole dataset
    // enteredKeyword is the value of the key set pair
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
-   const [chosenFilter, setChosenFilter] = useState("");
-   const [enteredKeyword, setEnteredKeyword] = useState("");
-   const [searchResults, setSearchResults] = useState([]);
 
    function executeSearch(submitEvent) {
       submitEvent.preventDefault();
    
-      fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword.toLowerCase()}`)
+      fetch(`/api/data/search?filterType=${chosenFilter.toLowerCase()}&keyword=${enteredKeyword.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {
-         ltc("Data is", data);
          setSearchResults(data);
       })
       .catch((error) => {
@@ -33,7 +29,7 @@ export default function Search() {
             <p>
                {/* drop down menu for filyer type */}
                <label htmlFor="filters">Select data point to filter search by:</label>
-               <select name="filter" id="filters" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
+               <select name="filters" id="filters" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
                   <option value="model">model</option>
                   <option value="gender">gender</option>
                   <option value="operatingsystem">operatingSystem</option>
