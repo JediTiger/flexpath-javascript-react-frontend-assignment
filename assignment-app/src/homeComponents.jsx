@@ -46,7 +46,6 @@ export function makeHomePageElements(textFileAsLines) {
          <div>{makeList(listItemsOnly)}</div>
          {/* Source text and link */}
          <p>{sourceLink(textFileAsLines[0], textFileAsLines[2])}</p>
-         <p>{textFileAsLines}</p>
       </div>
    );
 }
