@@ -11,33 +11,22 @@ export default function Search() {
    const [enteredKeyword, setEnteredKeyword] = useState("");
    const [searchResults, setSearchResults] = useState([]);
 
-   useEffect(() => {
-   // Successfully calls the api to fetch the search object
-         fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword}`)
-         .then((response) => response.json())
-         .then((data) => {
-            ltc("Data is", data);
-            setSearchResults(data);
-         })
-      .catch((error) => {
-        console.error('Error reading the data file:', error);
-      });
+   function executeSearch(submitEvent) {
+      submitEvent.preventDefault();
    
-  }, []);
-   function executeSearch(chosenFilter, enteredKeyword) {
-      fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword}`)
+      fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {
          ltc("Data is", data);
-         setSearchObject(data);
-         setDerivedResults(data);
+         setSearchResults(data);
       })
       .catch((error) => {
          console.error('Error reading the data file:', error);
       });
    }
+
    return (
-      // A containing div so it's a single object return
+      // A containing div so it's a single object returned
       <div id="searchContainer">
          <hr />
          <form onSubmit={executeSearch}>
@@ -54,12 +43,17 @@ export default function Search() {
             <p>
                {/* text box for user entered keyword */}
                <label htmlFor="keyword">Keyword:</label>
-               <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
+               <input type="text"
+                  id="keyword"
+                  name="keyword"
+                  placeholder="Search by keyword"
+                  value={enteredKeyword}
+                  onChange={(changeEvent) => setEnteredKeyword(changeEvent.target.value)} />
                <button type="submit">Search</button>
             </p>
          </form>
          {/* The search status gets its own div so its value can change as the app runs */}
-         <div id="searchStatus"><p>No Records to display</p></div>
+         <div id="searchStatus"><p>No entrys to display</p></div>
          {/* card placeholders for the various metric calculations required. Will do later */}
          <div id="metricCards">
             <div id="usageTime">App Usage Time (min/day)</div>
@@ -86,10 +80,26 @@ export default function Search() {
                   </tr>
                </thead>
                <tbody>
-               {/* Something will go here to show the search results in the table correctly */}
+                  {searchResults.map((entry, index) => {
+                     const entries = Object.values(entry);
+                     return (
+                        <tr key={index}>
+                           <td>{entries[0]}</td>
+                           <td>{entries[1]}</td>
+                           <td>{entries[2]}</td>
+                           <td>{entries[3]}</td>
+                           <td>{entries[4]}</td>
+                           <td>{entries[5]}</td>
+                           <td>{entries[6]}</td>
+                           <td>{entries[7]}</td>
+                           <td>{entries[8]}</td>
+                           <td>{entries[9]}</td>
+                           <td>{entries[10]}</td>
+                        </tr>
+                     );
+                  })}
                </tbody>
             </table>
-{/* formatted data will go here */}
             <hr />
          </div>
       </div>
