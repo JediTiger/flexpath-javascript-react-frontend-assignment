@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
 
 export default function Search({searchObject, setSearchObject, derivedResults, setDerivedResults}) {
@@ -7,10 +7,12 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
    // enteredKeyword is the value of the key set pair
    // chosenFilter is the key of the pair
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
+   const [chosenFilter, setChosenFilter] = useState("");
+   const [enteredKeyword, setEnteredKeyword] = useState("");
    
    useEffect(() => {
    // Successfully calls the api to fetch the search object
-         fetch('/api/data/search?filterType=gender&keyword=female')
+         fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword}`)
          .then((response) => response.json())
          .then((data) => {
             ltc("Data is", data);
@@ -25,22 +27,24 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
       // A containing div so it's a single object return
       <div id="searchContainer">
          <hr />
-         <p>
-            {/* drop down menu for filyer type */}
-            <label htmlFor="filters">Select data point to filter search by:</label>
-            <select name="cars" id="filters">
-               <option value="Model">model</option>
-               <option value="Gender">gender</option>
-               <option value="Operating System">operatingSystem</option>
-               <option value="User Behavior Class">behaviorClass</option>
-            </select>
-         </p>
-         <p>
-            {/* text box for user entered keyword */}
-            <label htmlFor="keyword">Keyword:</label>
-            <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
-            <button type="submit">Search</button>
-         </p>
+         <form onSubmit={executeSearch}>
+            <p>
+               {/* drop down menu for filyer type */}
+               <label htmlFor="filters">Select data point to filter search by:</label>
+               <select name="cars" id="filters" value={chosenFilter} onChange=>
+                  <option value="Model">model</option>
+                  <option value="Gender">gender</option>
+                  <option value="Operating System">operatingSystem</option>
+                  <option value="User Behavior Class">behaviorClass</option>
+               </select>
+            </p>
+            <p>
+               {/* text box for user entered keyword */}
+               <label htmlFor="keyword">Keyword:</label>
+               <input type="text" id="keyword" name="keyword" placeholder="Search by keyword"></input>
+               <button type="submit">Search</button>
+            </p>
+         </form>
          {/* The search status gets its own div so its value can change as the app runs */}
          <div id="searchStatus"><p>No Records to display</p></div>
          {/* card placeholders for the various metric calculations required. Will do later */}
