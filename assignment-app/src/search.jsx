@@ -89,7 +89,7 @@ export default function Search() {
                {/* Something will go here to show the search results in the table correctly */}
                </tbody>
             </table>
-            Contents of derivedResults array: {JSON.stringify(searchResults)}
+{/* formatted data will go here */}
             <hr />
          </div>
       </div>
