@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
 
-export default function Search({searchObject, setSearchObject, derivedResults, setDerivedResults}) {
+export default function Search() {
 
    // searchObject is the whole dataset
    // enteredKeyword is the value of the key set pair
@@ -9,20 +9,33 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
    // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
    const [chosenFilter, setChosenFilter] = useState("");
    const [enteredKeyword, setEnteredKeyword] = useState("");
-   
+   const [searchResults, setSearchResults] = useState([]);
+
    useEffect(() => {
    // Successfully calls the api to fetch the search object
          fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword}`)
          .then((response) => response.json())
          .then((data) => {
             ltc("Data is", data);
-            setSearchObject(data);
+            setSearchResults(data);
          })
       .catch((error) => {
         console.error('Error reading the data file:', error);
       });
    
   }, []);
+   function executeSearch(chosenFilter, enteredKeyword) {
+      fetch(`/api/data/search?filterType=${chosenFilter}&keyword=${enteredKeyword}`)
+      .then((response) => response.json())
+      .then((data) => {
+         ltc("Data is", data);
+         setSearchObject(data);
+         setDerivedResults(data);
+      })
+      .catch((error) => {
+         console.error('Error reading the data file:', error);
+      });
+   }
    return (
       // A containing div so it's a single object return
       <div id="searchContainer">
@@ -76,7 +89,7 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
                {/* Something will go here to show the search results in the table correctly */}
                </tbody>
             </table>
-            Contents of derivedResults array: {JSON.stringify(derivedResults)}
+            Contents of derivedResults array: {JSON.stringify(searchResults)}
             <hr />
          </div>
       </div>
