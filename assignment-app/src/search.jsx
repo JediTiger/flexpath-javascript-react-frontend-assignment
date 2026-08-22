@@ -33,11 +33,11 @@ export default function Search() {
             <p>
                {/* drop down menu for filyer type */}
                <label htmlFor="filters">Select data point to filter search by:</label>
-               <select name="cars" id="filters" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
-                  <option value="Model">model</option>
-                  <option value="Gender">gender</option>
-                  <option value="Operating System">operatingSystem</option>
-                  <option value="User Behavior Class">behaviorClass</option>
+               <select name="filter" id="filters" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
+                  <option value="model">model</option>
+                  <option value="gender">gender</option>
+                  <option value="operatingsystem">operatingSystem</option>
+                  <option value="behaviorclass">behaviorClass</option>
                </select>
             </p>
             <p>
