@@ -20,7 +20,7 @@ export default function Search({searchObject, setSearchObject, derivedResults, s
         console.error('Error reading the data file:', error);
       });
    
-  }, [searchObject, derivedResults, setDerivedResults, setSearchObject]);
+  }, []);
    return (
       // A containing div so it's a single object return
       <div id="searchContainer">
