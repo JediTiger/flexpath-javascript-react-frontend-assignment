@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
-
+import {  } from "./computeFunctions.js";
 export default function Search({chosenFilter, setChosenFilter, enteredKeyword, setEnteredKeyword, searchResults, setSearchResults}) {
 
    // searchObject is the whole dataset
@@ -52,7 +52,11 @@ export default function Search({chosenFilter, setChosenFilter, enteredKeyword, s
          <div id="searchStatus"><p>No entrys to display</p></div>
          {/* card placeholders for the various metric calculations required. Will do later */}
          <div id="metricCards">
-            <div id="usageTime">App Usage Time (min/day)</div>
+            <div id="usageTime">
+               <p>App Usage Time (min/day)</p>
+               <p>{computeAveUsage()}</p>
+               <p>{computeMedianUsage()}</p>
+            </div>
             <div id="screenTime">Screen On Time (hours/day)</div>
             <div id="numberApps">Number of Apps Installed</div>
             <div id="age">Age</div>
@@ -101,3 +105,30 @@ export default function Search({chosenFilter, setChosenFilter, enteredKeyword, s
       </div>
    );
 }
+
+Search.propTypes = {
+   chosenFilter: () => {},
+   setChosenFilter: () => {},
+   enteredKeyword: () => {},
+   setEnteredKeyword: () => {},
+   searchResults: () => {},
+   setSearchResults: () => {}
+};
+
+/*
+         <div id="metricCards">
+            <div id="usageTime">App Usage Time (min/day)</div>
+            <div id="screenTime">Screen On Time (hours/day)</div>
+            <div id="numberApps">Number of Apps Installed</div>
+            <div id="age">Age</div>
+         </div>
+*/
+
+function computeAveUsage() {
+
+}
+
+function computeMedianUsage() {
+
+}
+
