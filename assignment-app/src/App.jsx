@@ -9,6 +9,7 @@ export default function App() {
    const [chosenFilter, setChosenFilter] = useState("");
    const [enteredKeyword, setEnteredKeyword] = useState("");
    const [searchResults, setSearchResults] = useState([]);
+   const [isLoadingFlag, setIsLoadingFlag] = useState(false);
 
    useEffect(() => {
    // Attempt to fetch the file from the public folder of this project
@@ -33,7 +34,11 @@ export default function App() {
                enteredKeyword={enteredKeyword}
                setEnteredKeyword={setEnteredKeyword}
                searchResults={searchResults}
-               setSearchResults={setSearchResults}               />}
+               setSearchResults={setSearchResults}  
+               isLoadingFlag={isLoadingFlag}
+               setIsLoadingFlag={setIsLoadingFlag}
+               
+               />}
             />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>

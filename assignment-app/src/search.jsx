@@ -1,23 +1,42 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
 import { computeAve, computeMedian } from "./computeFunctions.js";
-export default function Search({chosenFilter, setChosenFilter, enteredKeyword, setEnteredKeyword, searchResults, setSearchResults}) {
 
-   // searchObject is the whole dataset
-   // enteredKeyword is the value of the key set pair
-   // chosenFilter is the key of the pair
-   // So the search checks the searchObject for the enteredKeyword (value) at the chosenFilter (key)
+export default function Search({chosenFilter, setChosenFilter, 
+                                 enteredKeyword, setEnteredKeyword, 
+                                 searchResults, setSearchResults,
+                                 isLoadingFlag, setIsLoadingFlag
+                              }) {
 
+
+
+   /*
+  0  "User ID": "1",
+  1  "Device Model": "Google Pixel 5",
+  2  "Operating System": "Android",
+  3  "App Usage Time (min/day)": "393",
+  4  "Screen On Time (hours/day)": "6.4",
+  5  "Battery Drain (mAh/day)": "1872",
+  6  "Number of Apps Installed": "67",
+  7  "Data Usage (MB/day)": "1122",
+  8  "Age": "40",
+  9  "Gender": "Male",
+  10  "User Behavior Class": "4"
+*/
    function executeSearch(submitEvent) {
       submitEvent.preventDefault();
+      setIsLoadingFlag(true);
+
    
       fetch(`/api/data/search?filterType=${chosenFilter.toLowerCase()}&keyword=${enteredKeyword.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {
          setSearchResults(data);
-      })
+         setIsLoadingFlag(false);
+})
       .catch((error) => {
          console.error('Error reading the data file:', error);
+         setIsLoadingFlag(false);
       });
    }
 
@@ -49,25 +68,33 @@ export default function Search({chosenFilter, setChosenFilter, enteredKeyword, s
             </p>
          </form>
          {/* The search status gets its own div so its value can change as the app runs */}
-         <div id="searchStatus"><p>No entrys to display</p></div>
+         <div id="searchStatus">
+            {isLoadingFlag ? (
+               <p>Loading records, just a moment...</p>
+               ) : searchResults.length === 0 ? (
+               <p>No entries to display</p>
+               ) : (
+               <p>Displaying <strong>{searchResults.length}</strong> records{searchResults.length === 1 ? "" : "s"}</p>
+               )}
+         </div>
          {/* card placeholders for the various metric calculations required. Will do later */}
          <div id="metricCards">
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
-               <p>{computeAveUsage()} minutes</p>
-               <p>{computeMedianUsage()} minutes</p>
+               <p>{computeAve()} minutes</p>
+               <p>{computeMedian()} minutes</p>
             </div>
             <div id="screenTime">Screen On Time (hours/day)
-               <p>{computeAveUsage()} minutes</p>
-               <p>{computeMedianUsage()} minutes</p>
+               <p>{computeAve()} minutes</p>
+               <p>{computeMedian()} minutes</p>
             </div>
             <div id="numberApps">Number of Apps Installed
-               <p>{computeAveUsage()} minutes</p>
-               <p>{computeMedianUsage()} minutes</p>
+               <p>{computeAve()} minutes</p>
+               <p>{computeMedian()} minutes</p>
             </div>
-            <div id="age">Age</div>
-               <p>{computeAveUsage()} minutes</p>
-               <p>{computeMedianUsage()} minutes</p>
+            <div id="age">Age
+               <p>{computeAve()} minutes</p>
+               <p>{computeMedian()} minutes</p>
             </div>
          </div>
          {/* The actual table for the search results */}
@@ -121,5 +148,7 @@ Search.propTypes = {
    enteredKeyword: () => {},
    setEnteredKeyword: () => {},
    searchResults: () => {},
-   setSearchResults: () => {}
+   setSearchResults: () => {},
+   isLoadingFlag: () => {},
+   setIsLoadingFlag: () => {}
 };

@@ -1,12 +1,12 @@
 
-export function computeAveUsage(deciderVar, dataObject) {
+export function computeAve(deciderVar, dataObject) {
    if (dataObject === 0 || isNaN) return 0;
 
 
 
 }
 
-export function computeMedianUsage(decider, dataObject) {
+export function computeMedian(deciderVar, dataObject) {
    if (dataObject === 0 || isNaN) return 0;
 
 
