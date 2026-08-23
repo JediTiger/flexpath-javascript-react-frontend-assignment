@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
-import {  } from "./computeFunctions.js";
+import { computeAve, computeMedian } from "./computeFunctions.js";
 export default function Search({chosenFilter, setChosenFilter, enteredKeyword, setEnteredKeyword, searchResults, setSearchResults}) {
 
    // searchObject is the whole dataset
@@ -54,12 +54,21 @@ export default function Search({chosenFilter, setChosenFilter, enteredKeyword, s
          <div id="metricCards">
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
-               <p>{computeAveUsage()}</p>
-               <p>{computeMedianUsage()}</p>
+               <p>{computeAveUsage()} minutes</p>
+               <p>{computeMedianUsage()} minutes</p>
             </div>
-            <div id="screenTime">Screen On Time (hours/day)</div>
-            <div id="numberApps">Number of Apps Installed</div>
+            <div id="screenTime">Screen On Time (hours/day)
+               <p>{computeAveUsage()} minutes</p>
+               <p>{computeMedianUsage()} minutes</p>
+            </div>
+            <div id="numberApps">Number of Apps Installed
+               <p>{computeAveUsage()} minutes</p>
+               <p>{computeMedianUsage()} minutes</p>
+            </div>
             <div id="age">Age</div>
+               <p>{computeAveUsage()} minutes</p>
+               <p>{computeMedianUsage()} minutes</p>
+            </div>
          </div>
          {/* The actual table for the search results */}
          <div id="searchResultsTable">
@@ -114,21 +123,3 @@ Search.propTypes = {
    searchResults: () => {},
    setSearchResults: () => {}
 };
-
-/*
-         <div id="metricCards">
-            <div id="usageTime">App Usage Time (min/day)</div>
-            <div id="screenTime">Screen On Time (hours/day)</div>
-            <div id="numberApps">Number of Apps Installed</div>
-            <div id="age">Age</div>
-         </div>
-*/
-
-function computeAveUsage() {
-
-}
-
-function computeMedianUsage() {
-
-}
-
