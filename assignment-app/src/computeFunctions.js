@@ -24,12 +24,21 @@ function computeAve(decidedMetricKey, dataObject) {
 }
 
 function computeMedian(decidedMetricKey, dataObject) {
-   const metricSum = dataObject.reduce((sum, current) => {
-      const val = parseFloat(current[decidedMetricKey]);
-      return sum + (isNaN(val) ? 0 : val);
-   }, 0);      
+   /*
+      Figuring a median:
+      1. Obtain list of numbers
+      2. Sort tht list from lowest to highest
+      3. Divide the number of items by 2
+      4. Decide the median
+         a. For an even amount of numbers, average the 2 middle values
+         b. For an odd amount, chose that exact number
+   */
+   const findTheMedian = dataObject.map(item => parseFloat(item[decidedMetricKey]));
+   findTheMedian.sort((a, b) => a - b);
    const resultSize = dataObject.length;
    return (metricSum / resultSize).toFixed(1);
+
+
 }
 
 function decideComputeTarget(targetMetric) {
