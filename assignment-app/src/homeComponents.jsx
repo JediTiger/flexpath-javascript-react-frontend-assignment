@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function sourceLink(linkText,linkUrl) {
    return (
-      <a href={linkUrl} target="_blank">{linkText}</a>
+      <a href={linkUrl} target="_blank" rel="noreferrer">{linkText}</a>
    );
 }
 
