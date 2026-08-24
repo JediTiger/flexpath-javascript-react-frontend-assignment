@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { makeHomePageElements, navigationBar } from "./homeComponents.jsx";
-import Search from "./Search.jsx";
+import Search from "./search.jsx";
 
 export default function App() {
     

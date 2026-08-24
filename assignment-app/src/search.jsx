@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { startCompute } from "./computeFunctions.js";
 
 export default function Search({chosenFilter, setChosenFilter, 
@@ -6,9 +7,12 @@ export default function Search({chosenFilter, setChosenFilter,
                                  isLoadingFlag, setIsLoadingFlag,
                               }) {
 
+   const [resultsLoadingError, setResultsLoadingError] = useState(null);
+
    function executeSearch(submitEvent) {
       submitEvent.preventDefault();
       setIsLoadingFlag(true);
+      setResultsLoadingError(null);
       fetch(`/api/data/search?filterType=${chosenFilter.toLowerCase()}&keyword=${enteredKeyword.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {
@@ -77,6 +81,11 @@ export default function Search({chosenFilter, setChosenFilter,
                <p>Average - {startCompute(1, "age", searchResults)} Years old</p>
                <p>Median - {startCompute(2, "age", searchResults)} Years old</p>
             </div>
+         </div>
+         {/* The actual table for the search results */}
+         <div id="tableStatus">
+               {isLoadingFlag && <p>Loading Records...</p>}
+               {resultsLoadingError && <p>{resultsLoadingError}</p>}
          </div>
          {/* The actual table for the search results */}
          <div id="searchResultsTable">
