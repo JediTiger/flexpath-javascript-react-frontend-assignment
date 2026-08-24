@@ -14,25 +14,22 @@
 */
 import { ltc } from "./logToConsole.js";
 
-export function computeAve(chosenMetric, dataObject) {
-   if (!Array.isArray(dataObject) === 0 || !dataObject) {
-      return 0;
-   } else {
-      const decidedMetricKey = decideComputeTarget(chosenMetric);
-      const metricSum = dataObject.reduce((sum, current) => {
-         const val = parseFloat(current[decidedMetricKey]);
-         return sum + (isNaN(val) ? 0 : val);
-      }, 0);
-      
-      const resultSize = dataObject.length;
-      return (metricSum / resultSize).toFixed(0);
-   }
-
-
+function computeAve(decidedMetricKey, dataObject) {
+   const metricSum = dataObject.reduce((sum, current) => {
+      const val = parseFloat(current[decidedMetricKey]);
+      return sum + (isNaN(val) ? 0 : val);
+   }, 0);      
+   const resultSize = dataObject.length;
+   return (metricSum / resultSize).toFixed(0);
 }
 
-export function computeMedian(chosenMetric, dataObject) {
-
+function computeMedian(decidedMetricKey, dataObject) {
+   const metricSum = dataObject.reduce((sum, current) => {
+      const val = parseFloat(current[decidedMetricKey]);
+      return sum + (isNaN(val) ? 0 : val);
+   }, 0);      
+   const resultSize = dataObject.length;
+   return (metricSum / resultSize).toFixed(1);
 }
 
 function decideComputeTarget(targetMetric) {
@@ -51,4 +48,17 @@ function decideComputeTarget(targetMetric) {
          break;
    }
    return targetMetric
+}
+
+export function startCompute(computeType, chosenMetric, dataObject) {
+   if (!Array.isArray(dataObject) || !dataObject || dataObject.length === 0) {
+      return 0;
+   } else {
+      const decidedMetricKey = decideComputeTarget(chosenMetric);
+      if (computeType === 1) {
+         return computeAve(decidedMetricKey, dataObject);
+      } else if (computeType === 2) {
+         return computeMedian(decidedMetricKey, dataObject);
+      }
+   }
 }

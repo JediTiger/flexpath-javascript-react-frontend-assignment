@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ltc } from "./logToConsole.js";
-import { computeAve, computeMedian } from "./computeFunctions.js";
+import { startCompute } from "./computeFunctions.js";
 
 export default function Search({chosenFilter, setChosenFilter, 
                                  enteredKeyword, setEnteredKeyword, 
@@ -66,20 +66,20 @@ export default function Search({chosenFilter, setChosenFilter,
          <div id="metricCards">
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
-               <p>{computeAve("usage", searchResults)} minutes</p>
-               <p>{computeMedian()} minutes</p>
+               <p>{startCompute(1, "usage", searchResults)} minutes</p>
+               <p>{startCompute()} minutes</p>
             </div>
             <div id="screenTime">Screen On Time (hours/day)
-               <p>{computeAve()} minutes</p>
-               <p>{computeMedian()} minutes</p>
+               <p>{startCompute()} minutes</p>
+               <p>{startCompute()} minutes</p>
             </div>
             <div id="numberApps">Number of Apps Installed
-               <p>{computeAve()} minutes</p>
-               <p>{computeMedian()} minutes</p>
+               <p>{startCompute()} minutes</p>
+               <p>{startCompute()} minutes</p>
             </div>
             <div id="age">Age
-               <p>{computeAve()} minutes</p>
-               <p>{computeMedian()} minutes</p>
+               <p>{startCompute()} minutes</p>
+               <p>{startCompute()} minutes</p>
             </div>
          </div>
          {/* The actual table for the search results */}
