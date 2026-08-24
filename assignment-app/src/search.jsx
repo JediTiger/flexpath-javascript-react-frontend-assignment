@@ -58,24 +58,24 @@ export default function Search({chosenFilter, setChosenFilter,
                <p>Displaying <strong>{searchResults.length}</strong> record{searchResults.length === 1 ? "" : "s"}</p>
                )}
          </div>
-         {/* card placeholders for the various metric calculations required. Will do later */}
+         {/* card placeholders for the various metric calculations required. */}
          <div id="metricCards">
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
-               <p>{startCompute(1, "usage", searchResults)} minutes</p>
-               <p>{startCompute(2, "usage", searchResults)} minutes</p>
+               <p>Average - {startCompute(1, "usage", searchResults)} Minutes</p>
+               <p>Median - {startCompute(2, "usage", searchResults)} Minutes</p>
             </div>
             <div id="screenTime">Screen On Time (hours/day)
-               <p>{startCompute()} minutes</p>
-               <p>{startCompute()} minutes</p>
+               <p>Average - {startCompute(1, "screen", searchResults)} Hours</p>
+               <p>Median - {startCompute(2, "screen", searchResults)} Hours</p>
             </div>
             <div id="numberApps">Number of Apps Installed
-               <p>{startCompute()} minutes</p>
-               <p>{startCompute()} minutes</p>
+               <p>Average - {startCompute(1, "apps", searchResults)} Apps</p>
+               <p>Median - {startCompute(2, "apps", searchResults)} Apps</p>
             </div>
             <div id="age">Age
-               <p>{startCompute()} minutes</p>
-               <p>{startCompute()} minutes</p>
+               <p>Average - {startCompute(1, "age", searchResults)} Years old</p>
+               <p>Median - {startCompute(2, "age", searchResults)} Years old</p>
             </div>
          </div>
          {/* The actual table for the search results */}
