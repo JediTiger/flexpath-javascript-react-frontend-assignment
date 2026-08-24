@@ -14,46 +14,41 @@
 */
 import { ltc } from "./logToConsole.js";
 
-export function computeAve(deciderVar, dataObject) {
-   if (dataObject === 0 || isNaN) {
+export function computeAve(chosenMetric, dataObject) {
+   if (!Array.isArray(dataObject) === 0 || !dataObject) {
       return 0;
    } else {
-      const decidedMetric = decideComputeTarget(deciderVar);
-      const metricSum = dataObject[decidedMetric].reduce((sum, current) => sum + current, 0);
+      const decidedMetricKey = decideComputeTarget(chosenMetric);
+      const metricSum = dataObject.reduce((sum, current) => {
+         const val = parseFloat(current[decidedMetricKey]);
+         return sum + (isNaN(val) ? 0 : val);
+      }, 0);
+      
       const resultSize = dataObject.length;
-      ltc("deciderVar is", deciderVar);
-      ltc("dataObject is", dataObject);
-      ltc("metricSum is", metricSum);
-      ltc("resultSize is", resultSize);
-      return metricSum / resultSize;
+      return (metricSum / resultSize).toFixed(0);
    }
 
 
 }
 
-export function computeMedian(deciderVar, dataObject) {
-   if (dataObject === 0 || isNaN) return 0;
-
-
-
+export function computeMedian(chosenMetric, dataObject) {
 
 }
 
 function decideComputeTarget(targetMetric) {
-   let decidedTarget;
    switch(targetMetric) {
       case "usage":
-         decidedTarget = 3;
+         targetMetric = "App Usage Time (min/day)";
          break;
       case "screen":
-         decidedTarget = 4;
+         targetMetric = "Screen On Time (hours/day)";
          break;
       case "apps":
-         decidedTarget = 6;
+         targetMetric = "Number of Apps Installed";
          break;
       case "age":
-         decidedTarget = 8;
+         targetMetric = "Age";
          break;
    }
-   return decidedTarget
+   return targetMetric
 }

@@ -13,8 +13,6 @@ export default function Search({chosenFilter, setChosenFilter,
    function executeSearch(submitEvent) {
       submitEvent.preventDefault();
       setIsLoadingFlag(true);
-
-   
       fetch(`/api/data/search?filterType=${chosenFilter.toLowerCase()}&keyword=${enteredKeyword.toLowerCase()}`)
       .then((response) => response.json())
       .then((data) => {
