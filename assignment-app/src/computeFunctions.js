@@ -12,7 +12,6 @@
   9  "Gender": "Male",
   10  "User Behavior Class": "4"
 */
-import { ltc } from "./logToConsole.js";
 
 function computeAve(decidedMetricKey, dataObject) {
    const metricSum = dataObject.reduce((sum, current) => {
@@ -38,14 +37,14 @@ function computeMedian(decidedMetricKey, dataObject) {
    // Step 2 - Sort the list
    medianList.sort((a, b) => a - b);
    // Step 3 - Find middle value
-   const middleValue = medianList.length / 2
+   const middleValue = Math.floor(medianList.length / 2);
    // Step 4 - Figure if even or odd
-   if (middleValue % 2 === 0) {
+   if (medianList.length % 2 === 0) {
       // a. If even, add the middle two numbers and divide by 2
       return ((medianList[middleValue - 1] + medianList[middleValue]) / 2).toFixed(1);
    } else {
       // b. If odd, just return that number
-      return middleValue.toFixed(1);
+      return medianList[middleValue].toFixed(1);
    }
 }
 
