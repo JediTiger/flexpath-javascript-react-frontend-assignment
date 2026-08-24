@@ -19,7 +19,8 @@ function computeAve(decidedMetricKey, dataObject) {
       return sum + (isNaN(val) ? 0 : val);
    }, 0);      
    const resultSize = dataObject.length;
-   return (metricSum / resultSize).toFixed(0);
+   const average = (metricSum / resultSize).toFixed(0);
+   return average.toLocaleString("en-US", {maximumFractionDigits: 0});
 }
 
 function computeMedian(decidedMetricKey, dataObject) {
@@ -39,13 +40,15 @@ function computeMedian(decidedMetricKey, dataObject) {
    // Step 3 - Find middle value
    const middleValue = Math.floor(medianList.length / 2);
    // Step 4 - Figure if even or odd
+   let medianValue;
    if (medianList.length % 2 === 0) {
       // a. If even, add the middle two numbers and divide by 2
-      return ((medianList[middleValue - 1] + medianList[middleValue]) / 2).toFixed(1);
+      medianValue = ((medianList[middleValue - 1] + medianList[middleValue]) / 2).toFixed(1);
    } else {
       // b. If odd, just return that number
-      return medianList[middleValue].toFixed(1);
+      medianValue =  medianList[middleValue].toFixed(1);
    }
+   return medianValue.toLocaleString("en-US", { maximumFractionDigits: 1});
 }
 
 function decideComputeTarget(targetMetric) {

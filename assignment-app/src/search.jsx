@@ -132,8 +132,4 @@ Search.propTypes = {
    setSearchResults: () => {},
    isLoadingFlag: () => {},
    setIsLoadingFlag: () => {},
-   usageAve: () => {},
-   setUsageAve: () => {},
-   usageMedian: () => {},
-   setUsageMedian: () => {}
 };
