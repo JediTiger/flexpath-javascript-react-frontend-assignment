@@ -74,7 +74,7 @@ export default function Search({chosenFilter, setChosenFilter,
                ) : searchResults.length === 0 ? (
                <p>No entries to display</p>
                ) : (
-               <p>Displaying <strong>{searchResults.length}</strong> records{searchResults.length === 1 ? "" : "s"}</p>
+               <p>Displaying <strong>{searchResults.length}</strong> record{searchResults.length === 1 ? "" : "s"}</p>
                )}
          </div>
          {/* card placeholders for the various metric calculations required. Will do later */}

@@ -6,7 +6,7 @@ import Search from "./Search.jsx";
 export default function App() {
     
    const [textFileAsLines, setTextFileAsLines] = useState([]);
-   const [chosenFilter, setChosenFilter] = useState("");
+   const [chosenFilter, setChosenFilter] = useState("model");
    const [enteredKeyword, setEnteredKeyword] = useState("");
    const [searchResults, setSearchResults] = useState([]);
    const [isLoadingFlag, setIsLoadingFlag] = useState(false);
