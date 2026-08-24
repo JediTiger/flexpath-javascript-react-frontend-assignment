@@ -26,7 +26,6 @@ export default function Search({chosenFilter, setChosenFilter,
    }
 
    return (
-      // A containing div so it's a single object returned
       <div id="searchContainer">
          <hr />
          <form onSubmit={executeSearch}>
