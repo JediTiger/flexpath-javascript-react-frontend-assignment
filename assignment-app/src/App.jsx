@@ -10,7 +10,8 @@ export default function App() {
    const [enteredKeyword, setEnteredKeyword] = useState("");
    const [searchResults, setSearchResults] = useState([]);
    const [isLoadingFlag, setIsLoadingFlag] = useState(false);
-
+   const [usageAve, setUsageAve] = useState("0");
+   const [usageMedian, setUsageMedian] = useState("0");
    useEffect(() => {
    // Attempt to fetch the file from the public folder of this project
       fetch('../dataset-information.txt')
@@ -37,7 +38,10 @@ export default function App() {
                setSearchResults={setSearchResults}  
                isLoadingFlag={isLoadingFlag}
                setIsLoadingFlag={setIsLoadingFlag}
-               
+               usageAve={usageAve}
+               setUsageAve={setUsageAve}
+               usageMedian={usageMedian}
+               setUsageMedian={setUsageMedian}
                />}
             />
             <Route path="/NotFound" element={<NotFound />} />

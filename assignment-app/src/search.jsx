@@ -5,24 +5,11 @@ import { computeAve, computeMedian } from "./computeFunctions.js";
 export default function Search({chosenFilter, setChosenFilter, 
                                  enteredKeyword, setEnteredKeyword, 
                                  searchResults, setSearchResults,
-                                 isLoadingFlag, setIsLoadingFlag
+                                 isLoadingFlag, setIsLoadingFlag,
+                                 usageAve, setUsageAve,
+                                 usageMedian, setUsageMedian
                               }) {
 
-
-
-   /*
-  0  "User ID": "1",
-  1  "Device Model": "Google Pixel 5",
-  2  "Operating System": "Android",
-  3  "App Usage Time (min/day)": "393",
-  4  "Screen On Time (hours/day)": "6.4",
-  5  "Battery Drain (mAh/day)": "1872",
-  6  "Number of Apps Installed": "67",
-  7  "Data Usage (MB/day)": "1122",
-  8  "Age": "40",
-  9  "Gender": "Male",
-  10  "User Behavior Class": "4"
-*/
    function executeSearch(submitEvent) {
       submitEvent.preventDefault();
       setIsLoadingFlag(true);
@@ -81,7 +68,7 @@ export default function Search({chosenFilter, setChosenFilter,
          <div id="metricCards">
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
-               <p>{computeAve()} minutes</p>
+               <p>{computeAve("usage", searchResults)} minutes</p>
                <p>{computeMedian()} minutes</p>
             </div>
             <div id="screenTime">Screen On Time (hours/day)
@@ -150,5 +137,9 @@ Search.propTypes = {
    searchResults: () => {},
    setSearchResults: () => {},
    isLoadingFlag: () => {},
-   setIsLoadingFlag: () => {}
+   setIsLoadingFlag: () => {},
+   usageAve: () => {},
+   setUsageAve: () => {},
+   usageMedian: () => {},
+   setUsageMedian: () => {}
 };
