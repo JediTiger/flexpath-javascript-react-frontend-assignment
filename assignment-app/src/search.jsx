@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
-import { ltc } from "./logToConsole.js";
 import { startCompute } from "./computeFunctions.js";
 
 export default function Search({chosenFilter, setChosenFilter, 
                                  enteredKeyword, setEnteredKeyword, 
                                  searchResults, setSearchResults,
                                  isLoadingFlag, setIsLoadingFlag,
-                                 usageAve, setUsageAve,
-                                 usageMedian, setUsageMedian
                               }) {
 
    function executeSearch(submitEvent) {
@@ -67,7 +63,7 @@ export default function Search({chosenFilter, setChosenFilter,
             <div id="usageTime">
                <p>App Usage Time (min/day)</p>
                <p>{startCompute(1, "usage", searchResults)} minutes</p>
-               <p>{startCompute()} minutes</p>
+               <p>{startCompute(2, "usage", searchResults)} minutes</p>
             </div>
             <div id="screenTime">Screen On Time (hours/day)
                <p>{startCompute()} minutes</p>

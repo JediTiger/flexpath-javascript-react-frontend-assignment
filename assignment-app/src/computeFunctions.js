@@ -33,12 +33,20 @@ function computeMedian(decidedMetricKey, dataObject) {
          a. For an even amount of numbers, average the 2 middle values
          b. For an odd amount, chose that exact number
    */
-   const findTheMedian = dataObject.map(item => parseFloat(item[decidedMetricKey]));
-   findTheMedian.sort((a, b) => a - b);
-   const resultSize = dataObject.length;
-   return (metricSum / resultSize).toFixed(1);
-
-
+   // Step 1 - Make the list of numbers
+   const medianList = dataObject.map(item => parseFloat(item[decidedMetricKey]));
+   // Step 2 - Sort the list
+   medianList.sort((a, b) => a - b);
+   // Step 3 - Find middle value
+   const middleValue = medianList.length / 2
+   // Step 4 - Figure if even or odd
+   if (middleValue % 2 === 0) {
+      // a. If even, add the middle two numbers and divide by 2
+      return ((medianList[middleValue - 1] + medianList[middleValue]) / 2).toFixed(1);
+   } else {
+      // b. If odd, just return that number
+      return middleValue.toFixed(1);
+   }
 }
 
 function decideComputeTarget(targetMetric) {
