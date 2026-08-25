@@ -108,8 +108,8 @@ export default function Search({chosenFilter, setChosenFilter,
                   </thead>
                   <tbody>
                      <tr><td colSpan="11"><hr /></td></tr>
+                     <DisplaySearchResults searchResults={searchResults} />
                   </tbody>
-                  <DisplaySearchResults searchResults={searchResults} />
                </table>
             </div>
          </div>
