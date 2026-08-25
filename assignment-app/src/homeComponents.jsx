@@ -36,17 +36,23 @@ export function makeHomePageElements(textFileAsLines) {
    return (
       <div id="homePage">
          <hr />
-         <div className="container ps-5 pt-4 pe-5 col-xl-15">
-            {/* Page title */}
-            <h1 className="fw-normal text-dark mb-3" style={{ fontSize: "3rem", letterSpacing: "-1px" }}>User Behavior Dataset</h1>
-            {/* Site description */}
-            <p className="text-dark lh-base mb-4" style={{ fontSize: "0.95rem", maxWidth: "950px" }}>{siteDescript}</p>
-            {/* Unordered list title */}
-            <h4 className="fw-normal text-dark mt-4 mb-3" style={{ fontSize: "2.3rem" }}>{listTitle}</h4>
-            {/* Unordered list */}
-            <div className="text-dark" style={{ fontSize: "0.9rem" }}>{makeList(listItemsOnly)}</div>
-            {/* Source text and link */}
-            <p className="mt-2" style={{ fontSize: "0.9rem" }}>{sourceLink(textFileAsLines[0], textFileAsLines[2])}</p>
+         <div className="container-fluid p-0">
+            <div className="row g-0">
+               {/* Extra column spacer as Bootstrap padding and margin do not produce enough left indent on their own */}
+               <div className="col-1 ms-4"></div>
+               <div className="col ps-5 pe-0">
+                  {/* Page title */}
+                  <h1 className="fw-normal text-dark mb-3 display-5">User Behavior Dataset</h1>
+                  {/* Site description */}
+                  <p className="text-dark lh-base mb-4 small">{siteDescript}</p>
+                  {/* Unordered list title */}
+                  <h2 className="fw-normal text-dark mt-4 mb-3 fs-1">{listTitle}</h2>
+                  {/* Unordered list */}
+                  <div className="text-dark small">{makeList(listItemsOnly)}</div>
+                  {/* Source text and link */}
+                  <p className="mt-2 small">{sourceLink(textFileAsLines[0], textFileAsLines[2])}</p>
+              </div>
+            </div>
          </div>
       </div>
    );

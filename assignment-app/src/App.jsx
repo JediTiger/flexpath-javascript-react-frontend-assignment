@@ -24,6 +24,7 @@ export default function App() {
   return (
       <Router>
       {navigationBar()}
+         <div className="container">
          <Routes>
             <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
             <Route path="/search" element={<Search 
@@ -39,6 +40,7 @@ export default function App() {
             />
             <Route path="/NotFound" element={<NotFound />} />
          </Routes>
+         </div>
       </Router>    
   )
 }
