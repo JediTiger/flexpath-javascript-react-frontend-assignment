@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { makeHomePageElements, navigationBar } from "./homeComponents.jsx";
-import Search from "./search.jsx";
+import Search from "./search/search.jsx";
 
 export default function App() {
     
@@ -10,10 +10,7 @@ export default function App() {
    const [enteredKeyword, setEnteredKeyword] = useState("");
    const [searchResults, setSearchResults] = useState([]);
    const [isLoadingFlag, setIsLoadingFlag] = useState(false);
-//   const [usageAve, setUsageAve] = useState("0");
-//   const [usageMedian, setUsageMedian] = useState("0");
    useEffect(() => {
-   // Attempt to fetch the file from the public folder of this project
       fetch('../dataset-information.txt')
         .then((response) => response.text())
         .then((data) => {
@@ -46,7 +43,6 @@ export default function App() {
   )
 }
 
-// To handle any issues with pages not loading
 export function NotFound() {
   return (
     <div>
