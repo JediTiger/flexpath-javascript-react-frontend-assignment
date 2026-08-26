@@ -65,15 +65,6 @@ export default function Search({chosenFilter, setChosenFilter,
             </div>
             {/* card placeholders for the various metric calculations required. */}
             <div id="metricCards">
-               <div id="usageTime">
-                  <p>App Usage Time (min/day)</p>
-                  <p>Average - {startCompute(1, "usage", searchResults)} Minutes</p>
-                  <p>Median - {startCompute(2, "usage", searchResults)} Minutes</p>
-               </div>
-               <div id="screenTime">Screen On Time (hours/day)
-                  <p>Average - {startCompute(1, "screen", searchResults)} Hours</p>
-                  <p>Median - {startCompute(2, "screen", searchResults)} Hours</p>
-               </div>
                <div id="numberApps">Number of Apps Installed
                   <p>Average - {startCompute(1, "apps", searchResults)} Apps</p>
                   <p>Median - {startCompute(2, "apps", searchResults)} Apps</p>
@@ -84,11 +75,25 @@ export default function Search({chosenFilter, setChosenFilter,
                </div>
             </div>
             <div id="metricCards" className="row g-3 mb-5">
-               <div className="col-md-3">
+               <div id="usage" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
                      <h6 className="fw-bold text-dark mb-2 fs-6">App Usage Time (min/day)</h6>
                      <p className="mb-3 text-dark small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
                      <p className="mb-0 text-dark small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
+                  </div>
+               </div>
+               <div id="screen" className="col-md-3">
+                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
+                     <h6 className="fw-bold text-dark mb-2 fs-6">Screen On Time (hours/day)</h6>
+                     <p className="mb-3 text-dark small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
+                     <p className="mb-0 text-dark small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
+                  </div>
+               </div>
+               <div id="screen" className="col-md-3">
+                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
+                     <h6 className="fw-bold text-dark mb-2 fs-6">Screen On Time (hours/day)</h6>
+                     <p className="mb-3 text-dark small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
+                     <p className="mb-0 text-dark small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
                   </div>
                </div>
 
