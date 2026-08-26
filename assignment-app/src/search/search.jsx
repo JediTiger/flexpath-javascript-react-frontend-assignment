@@ -30,27 +30,27 @@ export default function Search({chosenFilter, setChosenFilter,
       <div id="searchPage">
          <div id="searchFormAndResults" className="container-fluid p-0 ps-5 ms-md-4">
             <form onSubmit={executeSearch}>
-               <p>
+               <div className="mb-3">
                   {/* drop down menu for filyer type */}
-                  <label htmlFor="filters">Select data point to filter search by:</label>
-                  <select name="filters" id="filters" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
+                  <label htmlFor="filters" className="form-label small  d-block">Select data point to filter search by:</label>
+                  <select name="filters" id="filters" className="form-select form-select-sm" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
                      <option value="model">model</option>
                      <option value="gender">gender</option>
                      <option value="operatingsystem">operatingSystem</option>
                      <option value="behaviorclass">behaviorClass</option>
                   </select>
-               </p>
-               <p>
+               </div>
+               <div className="mb-3">
                   {/* text box for user entered keyword */}
-                  <label htmlFor="keyword">Keyword:</label>
                   <input type="text"
                      id="keyword"
                      name="keyword"
+                     className="form-control form-control-sm py-2"
                      placeholder="Search by keyword"
                      value={enteredKeyword}
                      onChange={(changeEvent) => setEnteredKeyword(changeEvent.target.value)} />
-                  <button type="submit">Search</button>
-               </p>
+                  <button type="submit" className="btn-sm w-100 border bg-white mt-2">Search</button>
+               </div>
             </form>
             {/* The search status gets its own div so its value can change as the app runs */}
             <div id="searchStatus">
@@ -102,7 +102,7 @@ export default function Search({chosenFilter, setChosenFilter,
             <div id="searchResultsTable">
                <table>
                   <thead>
-                     <tr>
+                     <tr className="border-bottom">
                         <th>User ID</th>
                         <th>Device Model</th>
                         <th>Operating System</th>
@@ -117,7 +117,6 @@ export default function Search({chosenFilter, setChosenFilter,
                      </tr>
                   </thead>
                   <tbody>
-                     <tr><td colSpan="11"><hr /></td></tr>
                      <DisplaySearchResults searchResults={searchResults} />
                   </tbody>
                </table>
