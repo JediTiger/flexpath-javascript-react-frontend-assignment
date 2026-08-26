@@ -65,10 +65,6 @@ export default function Search({chosenFilter, setChosenFilter,
             </div>
             {/* card placeholders for the various metric calculations required. */}
             <div id="metricCards">
-               <div id="numberApps">Number of Apps Installed
-                  <p>Average - {startCompute(1, "apps", searchResults)} Apps</p>
-                  <p>Median - {startCompute(2, "apps", searchResults)} Apps</p>
-               </div>
                <div id="age">Age
                   <p>Average - {startCompute(1, "age", searchResults)} Years old</p>
                   <p>Median - {startCompute(2, "age", searchResults)} Years old</p>
@@ -91,9 +87,9 @@ export default function Search({chosenFilter, setChosenFilter,
                </div>
                <div id="screen" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold text-dark mb-2 fs-6">Screen On Time (hours/day)</h6>
-                     <p className="mb-3 text-dark small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
-                     <p className="mb-0 text-dark small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
+                     <h6 className="fw-bold text-dark mb-2 fs-6">Number of Apps Installed</h6>
+                     <p className="mb-3 text-dark small">Average - {startCompute(1, "apps", searchResults)} Apps</p>
+                     <p className="mb-0 text-dark small">Median - {startCompute(2, "apps", searchResults)} Apps</p>
                   </div>
                </div>
 
