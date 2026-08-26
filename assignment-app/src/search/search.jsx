@@ -29,7 +29,7 @@ export default function Search({chosenFilter, setChosenFilter,
    return (
       <div id="searchPage">
          <hr />
-         <div id="searchFormAndResults" className="container">
+         <div id="searchFormAndResults" className="container-fluid p-0">
             <form onSubmit={executeSearch}>
                <p>
                   {/* drop down menu for filyer type */}
@@ -82,6 +82,16 @@ export default function Search({chosenFilter, setChosenFilter,
                   <p>Average - {startCompute(1, "age", searchResults)} Years old</p>
                   <p>Median - {startCompute(2, "age", searchResults)} Years old</p>
                </div>
+            </div>
+            <div id="metricCards" className="row g-3 mb-5">
+               <div className="col-md-3">
+                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
+                     <h6 className="fw-bold text-dark mb-2 fs-6">App Usage Time (min/day)</h6>
+                     <p className="mb-1 text-dark small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
+                     <p className="mb-0 text-dark small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
+                  </div>
+               </div>
+
             </div>
             {/* The actual table for the search results */}
             <div id="tableStatus">
