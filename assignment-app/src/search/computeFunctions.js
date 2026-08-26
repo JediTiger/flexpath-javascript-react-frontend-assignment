@@ -40,7 +40,7 @@ function decideComputeTarget(targetMetric) {
 }
 
 export function startCompute(computeType, chosenMetric, dataObject) {
-   if (!Array.isArray(dataObject) || !dataObject || dataObject.length === 0) {
+   if (!dataObject || dataObject.length === 0) {
       return 0;
    } else {
       const decidedMetricKey = decideComputeTarget(chosenMetric);

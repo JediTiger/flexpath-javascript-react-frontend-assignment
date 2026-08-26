@@ -87,7 +87,7 @@ export default function Search({chosenFilter, setChosenFilter,
                <div className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
                      <h6 className="fw-bold text-dark mb-2 fs-6">App Usage Time (min/day)</h6>
-                     <p className="mb-1 text-dark small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
+                     <p className="mb-3 text-dark small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
                      <p className="mb-0 text-dark small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
                   </div>
                </div>
