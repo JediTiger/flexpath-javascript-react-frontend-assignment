@@ -63,13 +63,7 @@ export default function Search({chosenFilter, setChosenFilter,
                   <p>Displaying <strong>{searchResults.length}</strong> record{searchResults.length === 1 ? "" : "s"}</p>
                   )}
             </div>
-            {/* card placeholders for the various metric calculations required. */}
-            <div id="metricCards">
-               <div id="age">Age
-                  <p>Average - {startCompute(1, "age", searchResults)} Years old</p>
-                  <p>Median - {startCompute(2, "age", searchResults)} Years old</p>
-               </div>
-            </div>
+            {/* metric cards */}
             <div id="metricCards" className="row g-3 mb-5">
                <div id="usage" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
@@ -92,7 +86,13 @@ export default function Search({chosenFilter, setChosenFilter,
                      <p className="mb-0 text-dark small">Median - {startCompute(2, "apps", searchResults)} Apps</p>
                   </div>
                </div>
-
+               <div id="screen" className="col-md-3">
+                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
+                     <h6 className="fw-bold text-dark mb-2 fs-6">Age</h6>
+                     <p className="mb-3 text-dark small">Average - {startCompute(1, "age", searchResults)} Years old</p>
+                     <p className="mb-0 text-dark small">Median - {startCompute(2, "age", searchResults)} Years old</p>
+                  </div>
+               </div>
             </div>
             {/* The actual table for the search results */}
             <div id="tableStatus">
