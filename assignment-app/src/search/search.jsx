@@ -30,26 +30,30 @@ export default function Search({chosenFilter, setChosenFilter,
       <div id="searchPage">
          <div id="searchFormAndResults" className="container-fluid p-0 ps-5 ms-md-4">
             <form onSubmit={executeSearch}>
-               <div className="mb-3">
-                  {/* drop down menu for filyer type */}
-                  <label htmlFor="filters" className="form-label small  d-block">Select data point to filter search by:</label>
-                  <select name="filters" id="filters" className="form-select form-select-sm" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
-                     <option value="model">model</option>
-                     <option value="gender">gender</option>
-                     <option value="operatingsystem">operatingSystem</option>
-                     <option value="behaviorclass">behaviorClass</option>
-                  </select>
-               </div>
-               <div className="mb-3">
-                  {/* text box for user entered keyword */}
-                  <input type="text"
-                     id="keyword"
-                     name="keyword"
-                     className="form-control form-control-sm py-2"
-                     placeholder="Search by keyword"
-                     value={enteredKeyword}
-                     onChange={(changeEvent) => setEnteredKeyword(changeEvent.target.value)} />
-                  <button type="submit" className="btn-sm w-100 border bg-white mt-2">Search</button>
+               <div className="row">
+                  <div className="col-12 col-md-4 col-lg-3">
+                     <div id="dropdown" className="mb-3">
+                        {/* drop down menu for filyer type */}
+                        <label htmlFor="filters" className="form-label small  d-block">Select data point to filter search by:</label>
+                        <select name="filters" id="filters" className="form-select form-select-sm" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
+                           <option value="model">model</option>
+                           <option value="gender">gender</option>
+                           <option value="operatingsystem">operatingSystem</option>
+                           <option value="behaviorclass">behaviorClass</option>
+                        </select>
+                     </div>
+                     <div id="keywordInput" className="mb-3">
+                        {/* text box for user entered keyword */}
+                        <input type="text"
+                           id="keyword"
+                           name="keyword"
+                           className="form-control form-control-sm py-2"
+                           placeholder="Search by keyword"
+                           value={enteredKeyword}
+                           onChange={(changeEvent) => setEnteredKeyword(changeEvent.target.value)} />
+                        <button type="submit" className="btn-sm w-100 border bg-white mt-2">Search</button>
+                     </div>
+                  </div>
                </div>
             </form>
             {/* The search status gets its own div so its value can change as the app runs */}
@@ -63,7 +67,7 @@ export default function Search({chosenFilter, setChosenFilter,
                   )}
             </div>
             {/* metric cards */}
-            <div id="metricCards" className="row g-3 mb-5">
+            <div id="metricCards" className="row g-5 mb-4">
                <div id="usage" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
                      <h6 className="fw-bold text-dark mb-2 fs-6">App Usage Time (min/day)</h6>
