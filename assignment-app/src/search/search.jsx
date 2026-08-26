@@ -28,8 +28,7 @@ export default function Search({chosenFilter, setChosenFilter,
 
    return (
       <div id="searchPage">
-         <hr />
-         <div id="searchFormAndResults" className="container-fluid p-0">
+         <div id="searchFormAndResults" className="container-fluid p-0 ps-5 ms-md-4">
             <form onSubmit={executeSearch}>
                <p>
                   {/* drop down menu for filyer type */}

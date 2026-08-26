@@ -35,7 +35,6 @@ export function makeHomePageElements(textFileAsLines) {
    const listItemsOnly = textFileAsLines.slice(9);
    return (
       <div id="homePage">
-         <hr />
          <div className="container-fluid p-4">
             <div className="row g-0">
                {/* Extra column spacer as Bootstrap padding and margin do not produce enough left indent on their own */}

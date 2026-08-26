@@ -24,22 +24,23 @@ export default function App() {
   return (
       <Router>
       {navigationBar()}
+      <hr />
          <div className="container">
-         <Routes>
-            <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
-            <Route path="/search" element={<Search 
-               chosenFilter={chosenFilter}
-               setChosenFilter={setChosenFilter}
-               enteredKeyword={enteredKeyword}
-               setEnteredKeyword={setEnteredKeyword}
-               searchResults={searchResults}
-               setSearchResults={setSearchResults}  
-               isLoadingFlag={isLoadingFlag}
-               setIsLoadingFlag={setIsLoadingFlag}
-               />}
-            />
-            <Route path="/NotFound" element={<NotFound />} />
-         </Routes>
+            <Routes>
+               <Route path="/" element={<>{makeHomePageElements(textFileAsLines)}</>} />
+               <Route path="/search" element={<Search 
+                  chosenFilter={chosenFilter}
+                  setChosenFilter={setChosenFilter}
+                  enteredKeyword={enteredKeyword}
+                  setEnteredKeyword={setEnteredKeyword}
+                  searchResults={searchResults}
+                  setSearchResults={setSearchResults}  
+                  isLoadingFlag={isLoadingFlag}
+                  setIsLoadingFlag={setIsLoadingFlag}
+                  />}
+               />
+               <Route path="/NotFound" element={<NotFound />} />
+            </Routes>
          </div>
       </Router>    
   )
