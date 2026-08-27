@@ -22,6 +22,7 @@ export default function App() {
       });
   }, []);
   return (
+   {/* Routing for the React pages */}
       <Router>
       {navigationBar()}
       <hr />
