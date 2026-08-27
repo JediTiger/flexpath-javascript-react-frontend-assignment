@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { startCompute } from "./computeFunctions.js";
 import { DisplaySearchResults, CreateMetricCards } from "./searchComponents.jsx";
 
 export default function Search({chosenFilter, setChosenFilter, 
