@@ -67,39 +67,7 @@ export default function Search({chosenFilter, setChosenFilter,
                   )}
             </div>
             {/* metric cards */}
-            <p>Original cards</p>
-            <div id="metricCards" className="row g-5 mb-4">
-               <div id="usage" className="col-md-3">
-                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold mb-2 fs-6">App Usage Time (min/day)</h6>
-                     <p className="mb-3 small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
-                     <p className="mb-0 small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
-                  </div>
-               </div>
-               <div id="screen" className="col-md-3">
-                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold mb-2 fs-6">Screen On Time (hours/day)</h6>
-                     <p className="mb-3 small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
-                     <p className="mb-0 small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
-                  </div>
-               </div>
-               <div id="apps" className="col-md-3">
-                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold mb-2 fs-6">Number of Apps Installed</h6>
-                     <p className="mb-3 small">Average - {startCompute(1, "apps", searchResults)} Apps</p>
-                     <p className="mb-0 small">Median - {startCompute(2, "apps", searchResults)} Apps</p>
-                  </div>
-               </div>
-               <div id="age" className="col-md-3">
-                  <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold mb-2 fs-6">Age</h6>
-                     <p className="mb-3 small">Average - {startCompute(1, "age", searchResults)} Years old</p>
-                     <p className="mb-0 small">Median - {startCompute(2, "age", searchResults)} Years old</p>
-                  </div>
-               </div>
-               <p>New cards created with a function</p>
-               <CreateMetricCards searchResults={searchResults} />
-            </div>
+            <CreateMetricCards searchResults={searchResults} />
             {/* The actual table for the search results */}
             <div id="tableStatus">
                   {isLoadingFlag && <p>Loading Records...</p>}

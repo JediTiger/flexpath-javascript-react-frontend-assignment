@@ -36,21 +36,21 @@ DisplaySearchResults.propTypes = {
 
 export function CreateMetricCards({searchResults}) {
    return (
-      <>
+      <div id="metricCards" className="row g-5">
          {cardKeys.map((key, index) => (
-            <div key={key} id={`${key}Card`} className="col-6 col-md-2">
-               <div className="card text-center py-3 px-0 border rounded-3 h-100 bg-white shadow-sm">
+            <div key={key} id={`${key}`} className="col-md-3">
+               <div className="card text-center py-3 px-0 border rounded-3 h-100">
                   <h6 className="fw-bold text-dark mb-2 fs-6">{cardTitles[index]}</h6>
-                  <p className="mb-3 text-dark small">
+                  <p className="mb-3 small">
                      Average - {startCompute(1, key, searchResults)} {cardUnits[index]}
                   </p>
-                  <p className="mb-0 text-dark small">
+                  <p className="mb-0 small">
                      Median - {startCompute(2, key, searchResults)} {cardUnits[index]}
                   </p>
                </div>
             </div>
          ))}
-      </>
+      </div>
    )   
 }
 
