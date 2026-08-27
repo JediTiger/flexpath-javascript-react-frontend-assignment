@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { startCompute } from "./computeFunctions.js";
-import DisplaySearchResults from "./searchComponents.jsx";
+import { DisplaySearchResults, CreateMetricCards } from "./searchComponents.jsx";
 
 export default function Search({chosenFilter, setChosenFilter, 
                                  enteredKeyword, setEnteredKeyword, 
@@ -28,14 +28,14 @@ export default function Search({chosenFilter, setChosenFilter,
 
    return (
       <div id="searchPage">
-         <div id="searchFormAndResults" className="container-fluid p-0 ps-5 ms-md-4">
+         <div id="searchFormAndResults" className="container">
             <form onSubmit={executeSearch}>
                <div className="row">
                   <div className="col-12 col-md-4 col-lg-3">
                      <div id="dropdown" className="mb-3">
                         {/* drop down menu for filyer type */}
-                        <label htmlFor="filters" className="form-label small  d-block">Select data point to filter search by:</label>
-                        <select name="filters" id="filters" className="form-select form-select-sm" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
+                        <label htmlFor="filters" className="form-label small mb-1 d-block">Select data point to filter search by:</label>
+                        <select name="filters" id="filters" className="form-select w-auto form-select-sm" value={chosenFilter} onChange={(changeEvent) => setChosenFilter(changeEvent.target.value)}>
                            <option value="model">model</option>
                            <option value="gender">gender</option>
                            <option value="operatingsystem">operatingSystem</option>
@@ -67,35 +67,38 @@ export default function Search({chosenFilter, setChosenFilter,
                   )}
             </div>
             {/* metric cards */}
+            <p>Original cards</p>
             <div id="metricCards" className="row g-5 mb-4">
                <div id="usage" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold text-dark mb-2 fs-6">App Usage Time (min/day)</h6>
-                     <p className="mb-3 text-dark small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
-                     <p className="mb-0 text-dark small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
+                     <h6 className="fw-bold mb-2 fs-6">App Usage Time (min/day)</h6>
+                     <p className="mb-3 small">Average - {startCompute(1, "usage", searchResults)} Minutes</p>
+                     <p className="mb-0 small">Median - {startCompute(2, "usage", searchResults)} Minutes</p>
                   </div>
                </div>
                <div id="screen" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold text-dark mb-2 fs-6">Screen On Time (hours/day)</h6>
-                     <p className="mb-3 text-dark small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
-                     <p className="mb-0 text-dark small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
+                     <h6 className="fw-bold mb-2 fs-6">Screen On Time (hours/day)</h6>
+                     <p className="mb-3 small">Average - {startCompute(1, "screen", searchResults)} Hours</p>
+                     <p className="mb-0 small">Median - {startCompute(2, "screen", searchResults)} Hours</p>
                   </div>
                </div>
-               <div id="screen" className="col-md-3">
+               <div id="apps" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold text-dark mb-2 fs-6">Number of Apps Installed</h6>
-                     <p className="mb-3 text-dark small">Average - {startCompute(1, "apps", searchResults)} Apps</p>
-                     <p className="mb-0 text-dark small">Median - {startCompute(2, "apps", searchResults)} Apps</p>
+                     <h6 className="fw-bold mb-2 fs-6">Number of Apps Installed</h6>
+                     <p className="mb-3 small">Average - {startCompute(1, "apps", searchResults)} Apps</p>
+                     <p className="mb-0 small">Median - {startCompute(2, "apps", searchResults)} Apps</p>
                   </div>
                </div>
-               <div id="screen" className="col-md-3">
+               <div id="age" className="col-md-3">
                   <div id="usage" className="card text-center py-3 px-2 border rounded-3 h-100">
-                     <h6 className="fw-bold text-dark mb-2 fs-6">Age</h6>
-                     <p className="mb-3 text-dark small">Average - {startCompute(1, "age", searchResults)} Years old</p>
-                     <p className="mb-0 text-dark small">Median - {startCompute(2, "age", searchResults)} Years old</p>
+                     <h6 className="fw-bold mb-2 fs-6">Age</h6>
+                     <p className="mb-3 small">Average - {startCompute(1, "age", searchResults)} Years old</p>
+                     <p className="mb-0 small">Median - {startCompute(2, "age", searchResults)} Years old</p>
                   </div>
                </div>
+               <p>New cards created with a function</p>
+               <CreateMetricCards searchResults={searchResults} />
             </div>
             {/* The actual table for the search results */}
             <div id="tableStatus">
@@ -103,21 +106,21 @@ export default function Search({chosenFilter, setChosenFilter,
                   {resultsLoadingError && <p>{resultsLoadingError}</p>}
             </div>
             {/* The actual table for the search results */}
-            <div id="searchResultsTable">
-               <table>
+            <div id="searchResultsTable" className="table-responsive mt-4">
+               <table className="table table-striped">
                   <thead>
                      <tr className="border-bottom">
-                        <th>User ID</th>
-                        <th>Device Model</th>
-                        <th>Operating System</th>
-                        <th>App Usage Time (min/day)</th>
-                        <th>Screen On Time (hours/day)</th>
-                        <th>Battery Drain (mAh/day)</th>
-                        <th>Number of Apps Installed</th>
-                        <th>Data Usage (MB/day)</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>User Behavior Class</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Device Model</th>
+                        <th scope="col">Operating System</th>
+                        <th scope="col">App Usage Time (min/day)</th>
+                        <th scope="col">Screen On Time (hours/day)</th>
+                        <th scope="col">Battery Drain (mAh/day)</th>
+                        <th scope="col">Number of Apps Installed</th>
+                        <th scope="col">Data Usage (MB/day)</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">User Behavior Class</th>
                      </tr>
                   </thead>
                   <tbody>

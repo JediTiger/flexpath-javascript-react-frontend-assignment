@@ -46,7 +46,7 @@ export default function App() {
   )
 }
 
-export function NotFound() {
+function NotFound() {
   return (
     <div className="container mt-5">
       <h3>On no! That page is missing!</h3>
