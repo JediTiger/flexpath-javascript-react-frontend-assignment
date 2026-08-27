@@ -40,7 +40,7 @@ export function CreateMetricCards({searchResults}) {
          {cardKeys.map((key, index) => (
             <div key={key} id={`${key}`} className="col-md-3">
                <div className="card text-center py-3 px-0 border rounded-3 h-100">
-                  <h6 className="fw-bold text-dark mb-2 fs-6">{cardTitles[index]}</h6>
+                  <h6 className="fw-bold mb-2 fs-6">{cardTitles[index]}</h6>
                   <p className="mb-3 small">
                      Average - {startCompute(1, key, searchResults)} {cardUnits[index]}
                   </p>
